@@ -5,3 +5,7 @@ dist
 mercuryapi-*
 Examples/
 Tests/
+.idea
+CMakeLists.txt
+cmake-build-debug
+venv
