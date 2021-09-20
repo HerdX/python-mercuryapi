@@ -22,8 +22,10 @@
 
 #include <tm_reader.h>
 
-#include <Python/Python.h>
-#include <Python/structmember.h>
+//#include <Python/Python.h>
+//#include <Python/structmember.h>
+#include <Python.h>
+#include <structmember.h>
 
 #define MAX_ANTENNA_COUNT 16
 #define MAX_GPIO_COUNT 4
