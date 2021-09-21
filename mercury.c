@@ -22,7 +22,7 @@
 
 #include <tm_reader.h>
 
-//#include <Python/Python.h>
+//include <Python/Python.h>
 //#include <Python/structmember.h>
 #include <Python.h>
 #include <structmember.h>
@@ -1866,6 +1866,12 @@ Reader_lock_gen2_tag(Reader *self, PyObject *args)
         return Py_False;
 
     TMR_TagOp_init_GEN2_Lock(&op, TMR_GEN2_LOCK_BITS_EPC, TMR_GEN2_LOCK_BITS_EPC, accessPassword);
+    if ((ret = TMR_executeTagOp(&self->reader,&op, self->tag_filter, NULL)) != TMR_SUCCESS)
+    {
+        PyErr_SetString(PyExc_RuntimeError, TMR_strerr(&self->reader, ret));
+        return Py_False;
+    }
+    TMR_TagOp_init_GEN2_Lock(&op, TMR_GEN2_LOCK_BITS_ACCESS, TMR_GEN2_LOCK_BITS_ACCESS, accessPassword);
     if ((ret = TMR_executeTagOp(&self->reader,&op, self->tag_filter, NULL)) != TMR_SUCCESS)
     {
         PyErr_SetString(PyExc_RuntimeError, TMR_strerr(&self->reader, ret));
